@@ -57,3 +57,5 @@ src/main/resources/firebase
 
 ### open ai prompt ###
 src/main/resources/prompt
+
+key.json
