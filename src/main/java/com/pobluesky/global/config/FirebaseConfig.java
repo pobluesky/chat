@@ -4,6 +4,7 @@ import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import jakarta.annotation.PostConstruct;
+import java.io.FileInputStream;
 import java.io.InputStream;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,7 +21,7 @@ public class FirebaseConfig {
     @PostConstruct
     public void init(){
         try{
-            InputStream serviceAccount = new ClassPathResource("firebase/firebase_service_key.json").getInputStream();
+            InputStream serviceAccount = new FileInputStream("/efs/firebase/firebase_service_key.json");
 
             FirebaseOptions options = new FirebaseOptions.Builder()
                     .setCredentials(GoogleCredentials.fromStream(serviceAccount))

@@ -1,28 +1,60 @@
-HELP.md
-.gradle
-gradlew
-gradlew.bat
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
 .gradle/
-gradle/
-build/
-!gradle/wrapper/gradle-wrapper.jar
-!**/src/main/**/build/
-!**/src/test/**/build/
+.gradle
 
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-bin/
-!**/src/main/**/bin/
-!**/src/test/**/bin/
+# Icon must end with two \r
+Icon
 
-### IntelliJ IDEA ###
-.idea
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+
+# Local History for Visual Studio Code
+.history/
+
+# Built Visual Studio Code Extensions
+*.vsix
+
+# node
+**/node_modules
+
+## maven
+**/target
+**/build
+**/out
+
+## eclipse
+**/.settings
+**/.classpath
+**/.project
+
+## IntelliJ IDEA
+.idea/*
 *.iws
 *.iml
 *.ipr
@@ -30,21 +62,8 @@ out/
 !**/src/main/**/out/
 !**/src/test/**/out/
 
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-
-### VS Code ###
-.vscode/
-
-### envfile ###
+## env
 .env
-
-### others ###
-.DS_Store
 
 ### jwt ###
 src/main/resources/application-local.properties

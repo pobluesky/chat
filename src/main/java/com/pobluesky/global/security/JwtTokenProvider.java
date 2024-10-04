@@ -52,7 +52,7 @@ public class JwtTokenProvider {
             .setHeaderParam(Header.TYPE, Header.JWT_TYPE)
             .setClaims(claims)
             .setIssuedAt(now)
-            .setExpiration(new Date(now.getTime() + 8640000))
+            .setExpiration(new Date(now.getTime() + 86400000))
             .signWith(SignatureAlgorithm.HS256, key)
             .compact();
 
@@ -60,7 +60,7 @@ public class JwtTokenProvider {
             .setHeaderParam(Header.TYPE, Header.JWT_TYPE)
             .setClaims(claims)
             .setIssuedAt(now)
-            .setExpiration(new Date(now.getTime() + 8640000))
+            .setExpiration(new Date(now.getTime() + 86400000))
             .signWith(SignatureAlgorithm.HS256, key)
             .compact();
 
