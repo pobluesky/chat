@@ -63,6 +63,8 @@ dependencies {
     implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0'
 
     implementation 'org.springframework.cloud:spring-cloud-starter-feign:1.4.7.RELEASE'
+    implementation 'io.github.openfeign.form:parent:3.8.0'
+    implementation 'io.github.openfeign.form:feign-form-spring:3.8.0'
 
     //Jwt
     implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
