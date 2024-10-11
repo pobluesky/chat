@@ -51,16 +51,23 @@ public class PdfConversionService {
                 BufferedImage bim = pdfRenderer.renderImageWithDPI(i, 300, ImageType.RGB);
 
                 logger.debug("bbbbbbbbbbbbbbbbb");
+                logger.debug("bim : {} *-*****************",bim);
 
                 try (ByteArrayOutputStream os = new ByteArrayOutputStream()) {
                     ImageIO.write(bim, "png", os);
                     byte[] imageBytes = os.toByteArray();
 
+                    logger.debug("imageBytes : {} *****************",imageBytes);
+
                     String blobName = uniqueId + "/page_" + (i + 1) + ".png";
+
+                    logger.debug("blobName : {} +++++++++++", blobName);
                     storage.create(
                         BlobInfo.newBuilder(bucketName, blobName).build(),
                         imageBytes
                     );
+
+                    logger.debug("storageCreate : {} +++++++++++", blobName);
 
                     String gcsPath = "gs://" + bucketName + "/" + blobName;
 
