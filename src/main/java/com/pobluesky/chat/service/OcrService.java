@@ -1,5 +1,6 @@
 package com.pobluesky.chat.service;
 
+import ch.qos.logback.classic.Logger;
 import com.google.cloud.vision.v1.AnnotateImageRequest;
 import com.google.cloud.vision.v1.AnnotateImageResponse;
 import com.google.cloud.vision.v1.BatchAnnotateImagesResponse;
@@ -15,6 +16,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -28,9 +30,13 @@ public class OcrService {
 
     private final FileConversionService fileConversionService;
 
+    private static final org.slf4j.Logger logger = LoggerFactory.getLogger(OcrService.class);
+
     public List<String> processFileAndDetectText(MultipartFile file) {
         try {
             List<String> gcsPaths = fileConversionService.convertFileToImages(file);
+
+            logger.debug("File conversion completed. GCS Paths: {}", gcsPaths);
 
             List<String> textResults = new ArrayList<>();
 
@@ -38,7 +44,7 @@ public class OcrService {
                 String detectedText = detectTextGcs(gcsPath);
                 textResults.add(detectedText);
             }
-
+            logger.debug("aaaaaaaaaaaaa");
             return textResults;
         } catch (Exception e) {
             throw new CommonException(ErrorCode.EXTERNAL_SERVER_ERROR);
