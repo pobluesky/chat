@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.rendering.ImageType;
 import org.apache.pdfbox.rendering.PDFRenderer;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +28,8 @@ public class PdfConversionService {
 
     private final Storage storage;
 
+    private static final org.slf4j.Logger logger = LoggerFactory.getLogger(PdfConversionService.class);
+
     @Value("${cloud.gcp.storage.bucket.name}")
     private String bucketName;
 
@@ -37,11 +40,17 @@ public class PdfConversionService {
     public List<String> convertPdfToImages(InputStream is, String uniqueId) {
         List<String> savedImgUrls = new ArrayList<>();
 
+        logger.debug("Converting PDF to Images start ******************");
+
         try (PDDocument pdfDoc = PDDocument.load(is)) {
             PDFRenderer pdfRenderer = new PDFRenderer(pdfDoc);
 
+            logger.debug("aaaaaaaaaaaa");
+
             for (int i = 0; i < pdfDoc.getNumberOfPages(); i++) {
                 BufferedImage bim = pdfRenderer.renderImageWithDPI(i, 300, ImageType.RGB);
+
+                logger.debug("bbbbbbbbbbbbbbbbb");
 
                 try (ByteArrayOutputStream os = new ByteArrayOutputStream()) {
                     ImageIO.write(bim, "png", os);
@@ -54,6 +63,8 @@ public class PdfConversionService {
                     );
 
                     String gcsPath = "gs://" + bucketName + "/" + blobName;
+
+                    logger.debug("gcsPath ******** {}",gcsPath);
                     savedImgUrls.add(gcsPath);
                 }
             }
