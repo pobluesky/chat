@@ -59,11 +59,11 @@ public class IntegratedOcrGptService {
         MultipartFile file,
         ProductType productType
     ) {
-        Customer customer = validateCustomer(token);
-
-        if (!Objects.equals(customer.getUserId(), userId)) {
-            throw new CommonException(ErrorCode.USER_NOT_MATCHED);
-        }
+//        Customer customer = validateCustomer(token);
+//
+//        if (!Objects.equals(customer.getUserId(), userId)) {
+//            throw new CommonException(ErrorCode.USER_NOT_MATCHED);
+//        }
 
         List<String> textResults = ocrService.processFileAndDetectText(file);
 

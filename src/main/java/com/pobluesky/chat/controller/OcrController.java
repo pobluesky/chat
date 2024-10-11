@@ -30,7 +30,7 @@ public class OcrController {
     public ResponseEntity<JsonResult<?>> processOcrFile(
         @RequestHeader("Authorization") String token,
         @PathVariable Long userId,
-        @RequestPart("file") MultipartFile file,
+        @RequestParam("file") MultipartFile file,
         @RequestParam("productType") ProductType productType
     ) {
 
