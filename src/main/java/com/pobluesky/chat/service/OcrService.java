@@ -41,7 +41,7 @@ public class OcrService {
 
             return textResults;
         } catch (Exception e) {
-            throw new CommonException(ErrorCode.EXTERNAL_SERVER_ERROR);
+            throw new CommonException(ErrorCode.QUALITY_MANAGER_NOT_FOUND);
         }
     }
 
