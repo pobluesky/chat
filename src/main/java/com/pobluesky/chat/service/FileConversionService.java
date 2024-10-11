@@ -6,12 +6,16 @@ import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 @Service
 @RequiredArgsConstructor
 public class FileConversionService {
+
+    private static final Logger logger = LoggerFactory.getLogger(FileConversionService.class);
 
     private final PdfConversionService pdfConversionService;
 
@@ -22,6 +26,10 @@ public class FileConversionService {
             String uniqueId = generateUniqueId();
             String fileName = file.getOriginalFilename();
             String fileExtension = getFileExtension(fileName);
+
+            logger.debug("uniqueId: {}", uniqueId);
+            logger.debug("fileName: {}", fileName);
+            logger.debug("fileExtension: {}", fileExtension);
 
             switch (fileExtension.toLowerCase()) {
                 case "pdf":
